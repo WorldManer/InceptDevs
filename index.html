@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>InceptDevs • Just Developers</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0b0e14;
+      font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      color: #d4d8dd;
+      line-height: 1.5;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      letter-spacing: -0.01em;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 28px;
+      width: 100%;
+    }
+
+    header {
+      border-bottom: 1px solid #2b2f38;
+      padding: 24px 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 600;
+      letter-spacing: -0.5px;
+      color: #f0f3f8;
+      text-transform: lowercase;
+    }
+    .logo span {
+      color: #7c8ba0;
+      font-weight: 450;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #9aa1af;
+      font-weight: 480;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      transition: color 0.2s ease;
+      border-bottom: 1px solid transparent;
+    }
+
+    .nav-links a:hover {
+      color: #e6ecf3;
+      border-bottom: 1px solid #5f6b7c;
+    }
+
+    .nav-links a.active {
+      color: #ffffff;
+      border-bottom: 1px solid #8f9eb2;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 48px 0 60px;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #5f6b7c;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 550;
+      color: #f2f5f9;
+      letter-spacing: -0.6px;
+      margin-bottom: 20px;
+    }
+
+    .statement {
+      border-left: 2px solid #3a424f;
+      padding-left: 20px;
+      color: #a4afbf;
+      font-size: 1.05rem;
+      margin-bottom: 32px;
+      max-width: 580px;
+    }
+
+    .info-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2px;
+      background: #1c1f26;
+      border: 1px solid #2f333b;
+      margin-top: 16px;
+    }
+
+    .info-block {
+      background: #14171d;
+      padding: 22px 28px;
+      flex: 1 1 240px;
+      border-right: 1px solid #2a2e36;
+    }
+    .info-block:last-child {
+      border-right: none;
+    }
+
+    .info-block .label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: #5c6779;
+      margin-bottom: 8px;
+    }
+
+    .info-block .value {
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: #dce3ed;
+    }
+
+    .team-description {
+      margin-top: 36px;
+      padding: 24px 28px;
+      border: 1px solid #2a2f39;
+      background: #101217;
+    }
+
+    .team-description .title {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: #6b7585;
+      margin-bottom: 12px;
+    }
+
+    .team-description p {
+      color: #b7c0ce;
+      font-size: 1rem;
+      max-width: 640px;
+      margin-bottom: 10px;
+    }
+
+    .team-description p:last-child {
+      margin-bottom: 0;
+    }
+
+    .contact-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      background: #1f232b;
+      border: 1px solid #31353e;
+      margin: 28px 0 40px;
+    }
+
+    .contact-item {
+      background: #15181e;
+      padding: 24px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 18px;
+      border-bottom: 1px solid #2c3039;
+    }
+    .contact-item:last-child {
+      border-bottom: none;
+    }
+
+    .contact-label {
+      font-weight: 500;
+      color: #cbd1db;
+      letter-spacing: 0.3px;
+      font-size: 1.05rem;
+    }
+
+    .contact-value a {
+      color: #9aa8bb;
+      text-decoration: none;
+      font-weight: 450;
+      border-bottom: 1px solid #3a414e;
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .contact-value a:hover {
+      color: #ffffff;
+      border-bottom: 1px solid #8a98ad;
+    }
+
+    hr {
+      border: 0;
+      border-top: 1px solid #262b33;
+      margin: 18px 0 26px;
+    }
+
+    footer {
+      border-top: 1px solid #262b33;
+      padding: 24px 0;
+      font-size: 0.8rem;
+      color: #6a717f;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-note {
+      color: #5c6573;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 0 20px;
+      }
+      .nav-links {
+        gap: 20px;
+      }
+      h1 {
+        font-size: 1.8rem;
+      }
+      .info-row {
+        flex-direction: column;
+      }
+      .info-block {
+        border-right: none;
+        border-bottom: 1px solid #2a2e36;
+      }
+      .info-block:last-child {
+        border-bottom: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">incept<span>devs</span></div>
+      <nav class="nav-links">
+        <a href="index.html" class="active">Главная</a>
+        <a href="contacts.html">Контакты</a>
+      </nav>
+    </header>
+
+    <main>
+      <div class="section-label">Just Developers</div>
+      <h1>InceptDevs</h1>
+      <div class="statement">
+        Команда разработчиков.Никаких громких заявлений — просто создаем проекты и помогаем в этом другим
+
+      <div class="info-row">
+        <div class="info-block">
+          <div class="label">Появились</div>
+          <div class="value">23.04.2026</div>
+        </div>
+        <div class="info-block">
+          <div class="label">Состав</div>
+          <div class="value">Формируется</div>
+        </div>
+        <div class="info-block">
+          <div class="label">РАБОТАЕМ И ДЕЛАЕМ</div>
+          <div class="value">Игры, ботов для всех платформ и т.п</div>
+        </div>
+      </div>
+
+      <div class="team-description">
+        <div class="title">Just Developers</div>
+        <p>Мы — группа разработчиков, объединённых подходом к чистой архитектуре и прозрачным процессам. Без лишней бюрократии, без пустых обещаний.</p>
+        <p>Сейчас на этапе формирования команды. Ищем тех, кому интересно строить работать с нами.</p>
+      </div>
+    </main>
+
+    <footer>
+      <div>InceptDevs</div>
+      <div class="footer-note">Just developers</div>
+    </footer>
+  </div>
+</body>
+</html>
