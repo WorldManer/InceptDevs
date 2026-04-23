@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>InceptDevs • Контакты</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0b0e14;
+      font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      color: #d4d8dd;
+      line-height: 1.5;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      letter-spacing: -0.01em;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 28px;
+      width: 100%;
+    }
+
+    header {
+      border-bottom: 1px solid #2b2f38;
+      padding: 24px 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 600;
+      letter-spacing: -0.5px;
+      color: #f0f3f8;
+      text-transform: lowercase;
+    }
+    .logo span {
+      color: #7c8ba0;
+      font-weight: 450;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #9aa1af;
+      font-weight: 480;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      transition: color 0.2s ease;
+      border-bottom: 1px solid transparent;
+    }
+
+    .nav-links a:hover {
+      color: #e6ecf3;
+      border-bottom: 1px solid #5f6b7c;
+    }
+
+    .nav-links a.active {
+      color: #ffffff;
+      border-bottom: 1px solid #8f9eb2;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 48px 0 60px;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #5f6b7c;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 550;
+      color: #f2f5f9;
+      letter-spacing: -0.6px;
+      margin-bottom: 20px;
+    }
+
+    .statement {
+      border-left: 2px solid #3a424f;
+      padding-left: 20px;
+      color: #a4afbf;
+      font-size: 1.05rem;
+      margin-bottom: 32px;
+      max-width: 580px;
+    }
+
+    .contact-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      background: #1f232b;
+      border: 1px solid #31353e;
+      margin: 28px 0 40px;
+    }
+
+    .contact-item {
+      background: #15181e;
+      padding: 24px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 18px;
+      border-bottom: 1px solid #2c3039;
+    }
+    .contact-item:last-child {
+      border-bottom: none;
+    }
+
+    .contact-label {
+      font-weight: 500;
+      color: #cbd1db;
+      letter-spacing: 0.3px;
+      font-size: 1.05rem;
+    }
+
+    .contact-value a {
+      color: #9aa8bb;
+      text-decoration: none;
+      font-weight: 450;
+      border-bottom: 1px solid #3a414e;
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .contact-value a:hover {
+      color: #ffffff;
+      border-bottom: 1px solid #8a98ad;
+    }
+
+    hr {
+      border: 0;
+      border-top: 1px solid #262b33;
+      margin: 18px 0 26px;
+    }
+
+    footer {
+      border-top: 1px solid #262b33;
+      padding: 24px 0;
+      font-size: 0.8rem;
+      color: #6a717f;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-note {
+      color: #5c6573;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 0 20px;
+      }
+      .nav-links {
+        gap: 20px;
+      }
+      h1 {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">incept<span>devs</span></div>
+      <nav class="nav-links">
+        <a href="index.html">Главная</a>
+        <a href="contacts.html" class="active">Контакты</a>
+      </nav>
+    </header>
+
+    <main>
+      <div class="section-label">Связь</div>
+      <h1>Контакты</h1>
+      <div class="statement">
+        Прямые ссылки для связи с командой и подачи заявки.
+      </div>
+
+      <div class="contact-list">
+        <div class="contact-item">
+          <span class="contact-label">GitHub</span>
+          <span class="contact-value"><a href="https://github.com/InceptDevs" target="_blank" rel="noopener noreferrer">github.com/InceptDevs</a></span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-label">Discord сервер</span>
+          <span class="contact-value"><a href="https://discord.gg/28zcpFDuJU" target="_blank" rel="noopener noreferrer">discord.gg/inceptdevs</a></span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-label">Анкета в команду</span>
+          <span class="contact-value"><a href="https://forms.example.com/inceptdevs-join" target="_blank" rel="noopener noreferrer">Заполнить заявку</a></span>
+        </div>
+      </div>
+
+      <hr>
+      <div style="color: #6a717f; font-size: 0.9rem;">
+        Актуальные контакты. Присоединяйтесь, если разделяете подход Just Developers.
+      </div>
+    </main>
+
+    <footer>
+      <div>InceptDevs</div>
+      <div class="footer-note">Just Developers • ранний этап</div>
+    </footer>
+  </div>
+</body>
+</html>
