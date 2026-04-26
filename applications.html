@@ -1,1 +1,193 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Официальная страница InceptDevs для подачи заявок в команду">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="favicon.png?v=2">
+    <link rel="shortcut icon" href="favicon.png?v=2">
+    <title>InceptDevs • Applications</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 24px;
+            text-align: center;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: #333;
+        }
+        input[type="text"],
+        input[type="number"],
+        input[type="url"] {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        input[type="url"]:focus {
+            outline: none;
+            border-color: #007aff;
+        }
+        .radio-group {
+            display: flex;
+            gap: 20px;
+        }
+        .radio-group label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: normal;
+            cursor: pointer;
+        }
+        input[type="range"] {
+            width: 100%;
+            margin: 10px 0;
+        }
+        .range-value {
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: #007aff;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #007aff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        button:hover {
+            background: #005fcb;
+        }
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        .message {
+            margin-top: 16px;
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            display: none;
+        }
+        .message.success {
+            background: #e6f7e6;
+            color: #2e7d32;
+            display: block;
+        }
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>InceptDevs</h1>
+        
+        <div id="loading" class="loading">
+            Загрузка...
+        </div>
+        
+        <form id="survey-form" style="display: none;">
+            <div class="form-group">
+                <label>1. Ваш Discord ник</label>
+                <input type="text" id="discord-nick" placeholder="username#0000" required>
+            </div>
+            
+            <div class="form-group">
+                <label>2. Ссылка на ваш профиль GitHub</label>
+                <input type="url" id="github" placeholder="https://github.com/username" required>
+            </div>
+            
+            <div class="form-group">
+                <label>3. Какие языки программирования вы знаете?</label>
+                <input type="text" id="languages" placeholder="JavaScript, Python, C++..." required>
+            </div>
 
+            <div class="form-group">
+                <label>4. Сколько вам лет?</label>
+                <input type="number" id="age" min="1" max="120" required>
+            </div>
+
+            <div class="form-group">
+                <label>5. Готовы ли вы продемонстрировать свои проекты?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="show-projects" value="Да" required> Да</label>
+                    <label><input type="radio" name="show-projects" value="Нет"> Нет</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>6. Готовы ли вы пройти обзвон?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="call" value="Да" required> Да</label>
+                    <label><input type="radio" name="call" value="Нет"> Нет</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>7. Имеете ли вы микрофон?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="microphone" value="Да" required> Да</label>
+                    <label><input type="radio" name="microphone" value="Нет"> Нет</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>8. Насколько мощный у вас компьютер? (0-10)</label>
+                <input type="range" id="power" min="0" max="10" step="1" value="5">
+                <div class="range-value" id="power-value">5</div>
+            </div>
+
+            <div class="form-group">
+                <label>9. Ваш пол?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="gender" value="Мужской" required> Мужской</label>
+                    <label><input type="radio" name="gender" value="Женский"> Женский</label>
+                </div>
+            </div>
+
+            <button type="submit" id="submit-btn">Отправить</button>
+            <div id="message" class="message"></div>
+        </form>
+    </div>
+
+    <script src="applications.js"></script>
+</body>
+</html>
