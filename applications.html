@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="Официальная страница InceptDevs для подачи заявок в команду">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="favicon.png?v=2">
-    <link rel="shortcut icon" href="favicon.png?v=2">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <link rel="icon" type="image/png" href="favicon.png">
     <title>InceptDevs • Applications</title>
     <style>
         * {
@@ -13,179 +12,392 @@
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #f5f5f5;
-            padding: 20px;
+            background: #0b0e14;
+            font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+            color: #d4d8dd;
+            line-height: 1.5;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            letter-spacing: -0.01em;
         }
+
         .container {
-            max-width: 600px;
+            max-width: 1100px;
             margin: 0 auto;
-            background: white;
-            border-radius: 12px;
-            padding: 24px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 0 28px;
+            width: 100%;
         }
-        h1 {
-            font-size: 24px;
-            margin-bottom: 24px;
+
+        header {
+            border-bottom: 1px solid #2b2f38;
+            padding: 24px 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            color: #f0f3f8;
+            text-transform: lowercase;
+            text-decoration: none;
+            cursor: pointer;
+            transition: opacity 0.2s ease;
+        }
+        .logo:hover {
+            opacity: 0.85;
+        }
+        .logo span {
+            color: #7c8ba0;
+            font-weight: 450;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 36px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #9aa1af;
+            font-weight: 480;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            transition: color 0.2s ease;
+            border-bottom: 1px solid transparent;
+        }
+
+        .nav-links a:hover {
+            color: #e6ecf3;
+            border-bottom: 1px solid #5f6b7c;
+        }
+
+        .nav-links a.active {
+            color: #ffffff;
+            border-bottom: 1px solid #8f9eb2;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 48px 0 60px;
+            align-items: center;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #5f6b7c;
+            font-weight: 500;
+            margin-bottom: 8px;
             text-align: center;
-            color: #333;
+            width: 100%;
         }
-        .form-group {
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 550;
+            color: #f2f5f9;
+            letter-spacing: -0.6px;
             margin-bottom: 20px;
+            text-align: center;
         }
+
+        .statement {
+            border-left: 2px solid #3a424f;
+            padding-left: 20px;
+            color: #a4afbf;
+            font-size: 1.05rem;
+            margin-bottom: 40px;
+            max-width: 580px;
+            text-align: left;
+        }
+
+        .form-container {
+            background: #101217;
+            border: 1px solid #2a2f39;
+            border-radius: 0;
+            padding: 32px;
+            width: 100%;
+            max-width: 640px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
         label {
             display: block;
             font-weight: 500;
             margin-bottom: 8px;
-            color: #333;
+            color: #cbd1db;
+            font-size: 0.95rem;
+            letter-spacing: 0.2px;
         }
+
         input[type="text"],
         input[type="number"],
         input[type="url"] {
             width: 100%;
             padding: 10px 12px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
+            background: #14171d;
+            border: 1px solid #2f333b;
+            color: #d4d8dd;
             font-size: 16px;
-            box-sizing: border-box;
+            font-family: inherit;
+            outline: none;
+            transition: border-color 0.2s ease;
         }
+
         input[type="text"]:focus,
         input[type="number"]:focus,
         input[type="url"]:focus {
-            outline: none;
-            border-color: #007aff;
+            border-color: #5f6b7c;
         }
+
+        input::placeholder {
+            color: #5c6573;
+        }
+
         .radio-group {
             display: flex;
-            gap: 20px;
+            gap: 28px;
         }
+
         .radio-group label {
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
             font-weight: normal;
             cursor: pointer;
+            color: #9aa1af;
+            font-size: 0.95rem;
         }
+
+        input[type="radio"] {
+            accent-color: #5f6b7c;
+            width: 16px;
+            height: 16px;
+        }
+
         input[type="range"] {
             width: 100%;
             margin: 10px 0;
+            -webkit-appearance: none;
+            appearance: none;
+            background: #2f333b;
+            height: 4px;
+            outline: none;
         }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            background: #5f6b7c;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            width: 16px;
+            height: 16px;
+            background: #5f6b7c;
+            cursor: pointer;
+            border-radius: 50%;
+            border: none;
+        }
+
         .range-value {
             text-align: center;
             font-size: 18px;
             font-weight: bold;
-            color: #007aff;
+            color: #9aa8bb;
+            margin-top: 4px;
         }
+
         button {
             width: 100%;
             padding: 12px;
-            background: #007aff;
-            color: white;
-            border: none;
-            border-radius: 8px;
+            background: #2b3540;
+            color: #e6ecf3;
+            border: 1px solid #3a424f;
             font-size: 16px;
-            font-weight: 600;
+            font-weight: 500;
             cursor: pointer;
-            transition: background 0.2s;
+            transition: background 0.2s ease;
+            font-family: inherit;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
         }
+
         button:hover {
-            background: #005fcb;
+            background: #354050;
         }
+
         button:disabled {
-            background: #ccc;
+            background: #1c1f26;
+            border-color: #2a2e36;
+            color: #5c6573;
             cursor: not-allowed;
         }
+
         .message {
             margin-top: 16px;
             padding: 12px;
-            border-radius: 8px;
             text-align: center;
             display: none;
+            font-size: 0.9rem;
         }
+
         .message.success {
-            background: #e6f7e6;
-            color: #2e7d32;
+            background: #141d17;
+            color: #5a8f6a;
+            border: 1px solid #2a3a2e;
             display: block;
         }
+
         .loading {
             text-align: center;
             padding: 20px;
-            color: #666;
+            color: #6a717f;
+        }
+
+        footer {
+            border-top: 1px solid #262b33;
+            padding: 24px 0;
+            font-size: 0.8rem;
+            color: #6a717f;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .footer-note {
+            color: #5c6573;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 0 20px;
+            }
+            .nav-links {
+                gap: 20px;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            .form-container {
+                padding: 20px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>InceptDevs</h1>
-        
-        <div id="loading" class="loading">
-            Загрузка...
-        </div>
-        
-        <form id="survey-form" style="display: none;">
-            <div class="form-group">
-                <label>1. Ваш Discord ник</label>
-                <input type="text" id="discord-nick" placeholder="username#0000" required>
+        <header>
+            <a href="index.html" class="logo">incept<span>devs</span></a>
+            <nav class="nav-links">
+                <a href="index.html">Главная</a>
+                <a href="contacts.html">Контакты</a>
+                <a href="applications.html" class="active">Заявка</a>
+            </nav>
+        </header>
+
+        <main>
+            <div class="section-label">Присоединиться</div>
+            <h1>Анкета</h1>
+            <div class="statement">
+                Заполните форму ниже, чтобы подать заявку в команду InceptDevs.
             </div>
             
-            <div class="form-group">
-                <label>2. Ссылка на ваш профиль GitHub</label>
-                <input type="url" id="github" placeholder="https://github.com/username" required>
-            </div>
-            
-            <div class="form-group">
-                <label>3. Какие языки программирования вы знаете?</label>
-                <input type="text" id="languages" placeholder="JavaScript, Python, C++..." required>
-            </div>
-
-            <div class="form-group">
-                <label>4. Сколько вам лет?</label>
-                <input type="number" id="age" min="1" max="120" required>
-            </div>
-
-            <div class="form-group">
-                <label>5. Готовы ли вы продемонстрировать свои проекты?</label>
-                <div class="radio-group">
-                    <label><input type="radio" name="show-projects" value="Да" required> Да</label>
-                    <label><input type="radio" name="show-projects" value="Нет"> Нет</label>
+            <div class="form-container">
+                <div id="loading" class="loading">
+                    Загрузка...
                 </div>
-            </div>
+                
+                <form id="survey-form" style="display: none;">
+                    <div class="form-group">
+                        <label>1. Ваш Discord ник</label>
+                        <input type="text" id="discord-nick" placeholder="username" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>2. Ссылка на ваш профиль GitHub</label>
+                        <input type="url" id="github" placeholder="https://github.com/username" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>3. Какие языки программирования вы знаете?</label>
+                        <input type="text" id="languages" placeholder="JavaScript, Python, C++..." required>
+                    </div>
 
-            <div class="form-group">
-                <label>6. Готовы ли вы пройти обзвон?</label>
-                <div class="radio-group">
-                    <label><input type="radio" name="call" value="Да" required> Да</label>
-                    <label><input type="radio" name="call" value="Нет"> Нет</label>
-                </div>
-            </div>
+                    <div class="form-group">
+                        <label>4. Сколько вам лет?</label>
+                        <input type="number" id="age" min="1" max="120" required>
+                    </div>
 
-            <div class="form-group">
-                <label>7. Имеете ли вы микрофон?</label>
-                <div class="radio-group">
-                    <label><input type="radio" name="microphone" value="Да" required> Да</label>
-                    <label><input type="radio" name="microphone" value="Нет"> Нет</label>
-                </div>
-            </div>
+                    <div class="form-group">
+                        <label>5. Готовы ли вы продемонстрировать свои проекты?</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="show-projects" value="Да" required> Да</label>
+                            <label><input type="radio" name="show-projects" value="Нет"> Нет</label>
+                        </div>
+                    </div>
 
-            <div class="form-group">
-                <label>8. Насколько мощный у вас компьютер? (0-10)</label>
-                <input type="range" id="power" min="0" max="10" step="1" value="5">
-                <div class="range-value" id="power-value">5</div>
-            </div>
+                    <div class="form-group">
+                        <label>6. Готовы ли вы пройти обзвон?</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="call" value="Да" required> Да</label>
+                            <label><input type="radio" name="call" value="Нет"> Нет</label>
+                        </div>
+                    </div>
 
-            <div class="form-group">
-                <label>9. Ваш пол?</label>
-                <div class="radio-group">
-                    <label><input type="radio" name="gender" value="Мужской" required> Мужской</label>
-                    <label><input type="radio" name="gender" value="Женский"> Женский</label>
-                </div>
-            </div>
+                    <div class="form-group">
+                        <label>7. Имеете ли вы микрофон?</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="microphone" value="Да" required> Да</label>
+                            <label><input type="radio" name="microphone" value="Нет"> Нет</label>
+                        </div>
+                    </div>
 
-            <button type="submit" id="submit-btn">Отправить</button>
-            <div id="message" class="message"></div>
-        </form>
+                    <div class="form-group">
+                        <label>8. Насколько мощный у вас компьютер? (0-10)</label>
+                        <input type="range" id="power" min="0" max="10" step="1" value="5">
+                        <div class="range-value" id="power-value">5</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>9. Ваш пол?</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="gender" value="Мужской" required> Мужской</label>
+                            <label><input type="radio" name="gender" value="Женский"> Женский</label>
+                        </div>
+                    </div>
+
+                    <button type="submit" id="submit-btn">Отправить</button>
+                    <div id="message" class="message"></div>
+                </form>
+            </div>
+        </main>
+
+        <footer>
+            <div>InceptDevs</div>
+            <div class="footer-note">Just Developers • ранний этап</div>
+        </footer>
     </div>
 
     <script src="applications.js"></script>
