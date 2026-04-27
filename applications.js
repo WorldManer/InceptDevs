@@ -34,6 +34,11 @@ async function loadConfig() {
         }
         if (formEl) {
             formEl.style.display = 'block';
+            const submitBtn = document.getElementById('submit-btn');
+            if (submitBtn && localStorage.getItem('lastSubmitTime')) {
+                lastSubmitTime = parseInt(localStorage.getItem('lastSubmitTime'));
+                checkCooldown(submitBtn);
+            }
         }
         
     } catch (error) {
@@ -58,6 +63,7 @@ function startCooldown(button) {
             cooldownInterval = null;
             button.disabled = false;
             button.textContent = 'Отправить';
+            localStorage.removeItem('lastSubmitTime');
         } else {
             const minutesLeft = Math.ceil(timeLeft / 60000);
             button.disabled = true;
@@ -84,6 +90,42 @@ function checkCooldown(button) {
     return false;
 }
 
+async function getHWID() {
+    const components = [];
+    
+    components.push(navigator.userAgent);
+    components.push(navigator.language);
+    components.push(navigator.platform);
+    components.push(screen.colorDepth);
+    components.push(screen.width + 'x' + screen.height);
+    components.push(new Date().getTimezoneOffset());
+    
+    if (navigator.hardwareConcurrency) {
+        components.push(navigator.hardwareConcurrency);
+    }
+    
+    if (navigator.deviceMemory) {
+        components.push(navigator.deviceMemory);
+    }
+    
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    ctx.textBaseline = 'top';
+    ctx.font = '14px Arial';
+    ctx.fillText('HWID', 2, 2);
+    components.push(canvas.toDataURL());
+    
+    const hwidString = components.join('|');
+    
+    const encoder = new TextEncoder();
+    const data = encoder.encode(hwidString);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    
+    return hashHex.substring(0, 32);
+}
+
 async function sendToWebhook(data) {
     if (!WEBHOOK_URL) {
         throw new Error('Webhook не загружен');
@@ -94,6 +136,11 @@ async function sendToWebhook(data) {
         color: 0x5865F2,
         timestamp: new Date().toISOString(),
         fields: [
+            {
+                name: 'HWID',
+                value: '```' + data.hwid + '```',
+                inline: false
+            },
             {
                 name: 'Discord ник',
                 value: '```' + data.discordNick + '```',
@@ -186,7 +233,7 @@ function showMessage(text) {
     }
 }
 
-function getFormData() {
+async function getFormData() {
     const discordNick = document.getElementById('discord-nick')?.value.trim();
     const github = document.getElementById('github')?.value.trim();
     const languages = document.getElementById('languages')?.value.trim();
@@ -197,8 +244,11 @@ function getFormData() {
     const power = document.getElementById('power')?.value;
     const gender = document.querySelector('input[name="gender"]:checked')?.value;
     
+    const hwid = await getHWID();
+    
     return {
         timestamp: new Date().toISOString(),
+        hwid: hwid,
         discordNick: discordNick || 'Не указан',
         github: github || 'Не указан',
         languages: languages || 'Не указано',
@@ -282,7 +332,7 @@ async function handleSubmit(event) {
     submitBtn.textContent = 'Отправка...';
     
     try {
-        const formData = getFormData();
+        const formData = await getFormData();
         
         if (!validateForm(formData)) {
             submitBtn.disabled = false;
@@ -293,6 +343,7 @@ async function handleSubmit(event) {
         await sendToWebhook(formData);
         
         lastSubmitTime = Date.now();
+        localStorage.setItem('lastSubmitTime', lastSubmitTime.toString());
         
         showMessage('Анкета отправлена');
         resetForm();
