@@ -34,11 +34,6 @@ async function loadConfig() {
         }
         if (formEl) {
             formEl.style.display = 'block';
-            const submitBtn = document.getElementById('submit-btn');
-            if (submitBtn && localStorage.getItem('lastSubmitTime')) {
-                lastSubmitTime = parseInt(localStorage.getItem('lastSubmitTime'));
-                checkCooldown(submitBtn);
-            }
         }
         
     } catch (error) {
@@ -63,7 +58,6 @@ function startCooldown(button) {
             cooldownInterval = null;
             button.disabled = false;
             button.textContent = 'Отправить';
-            localStorage.removeItem('lastSubmitTime');
         } else {
             const minutesLeft = Math.ceil(timeLeft / 60000);
             button.disabled = true;
@@ -91,39 +85,57 @@ function checkCooldown(button) {
 }
 
 async function getHWID() {
-    const components = [];
-    
-    components.push(navigator.userAgent);
-    components.push(navigator.language);
-    components.push(navigator.platform);
-    components.push(screen.colorDepth);
-    components.push(screen.width + 'x' + screen.height);
-    components.push(new Date().getTimezoneOffset());
-    
-    if (navigator.hardwareConcurrency) {
-        components.push(navigator.hardwareConcurrency);
+    try {
+        const components = [];
+        
+        components.push(navigator.userAgent);
+        components.push(navigator.language);
+        components.push(navigator.hardwareConcurrency || 'unknown');
+        components.push(navigator.deviceMemory || 'unknown');
+        components.push(screen.width + 'x' + screen.height);
+        components.push(screen.colorDepth);
+        components.push(Intl.DateTimeFormat().resolvedOptions().timeZone);
+        
+        try {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            ctx.textBaseline = 'top';
+            ctx.font = '14px Arial';
+            ctx.fillText('HWID Fingerprint', 2, 2);
+            const canvasData = canvas.toDataURL();
+            components.push(canvasData.substring(canvasData.length - 100));
+        } catch (e) {
+            components.push('canvas-na');
+        }
+        
+        try {
+            const gl = document.createElement('canvas').getContext('webgl');
+            if (gl) {
+                const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
+                if (debugInfo) {
+                    components.push(gl.getParameter(debugInfo.UNMASKED_VENDOR_WEBGL));
+                    components.push(gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL));
+                }
+            }
+        } catch (e) {
+            components.push('webgl-na');
+        }
+        
+        components.push(navigator.platform || 'unknown');
+        components.push(navigator.maxTouchPoints || 0);
+        
+        const rawString = components.join('|');
+        
+        const encoder = new TextEncoder();
+        const data = encoder.encode(rawString);
+        const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+        const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        
+        return hashHex.substring(0, 32);
+    } catch (error) {
+        return 'HWID-' + Date.now() + '-' + Math.random().toString(36).substring(2, 10);
     }
-    
-    if (navigator.deviceMemory) {
-        components.push(navigator.deviceMemory);
-    }
-    
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
-    ctx.textBaseline = 'top';
-    ctx.font = '14px Arial';
-    ctx.fillText('HWID', 2, 2);
-    components.push(canvas.toDataURL());
-    
-    const hwidString = components.join('|');
-    
-    const encoder = new TextEncoder();
-    const data = encoder.encode(hwidString);
-    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-    const hashArray = Array.from(new Uint8Array(hashBuffer));
-    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-    
-    return hashHex.substring(0, 32);
 }
 
 async function sendToWebhook(data) {
@@ -136,11 +148,6 @@ async function sendToWebhook(data) {
         color: 0x5865F2,
         timestamp: new Date().toISOString(),
         fields: [
-            {
-                name: 'HWID',
-                value: '```' + data.hwid + '```',
-                inline: false
-            },
             {
                 name: 'Discord ник',
                 value: '```' + data.discordNick + '```',
@@ -185,6 +192,11 @@ async function sendToWebhook(data) {
                 name: 'Наличие микрофона',
                 value: '```' + data.microphone + '```',
                 inline: true
+            },
+            {
+                name: 'HWID Пользователя',
+                value: '```' + data.hwid + '```',
+                inline: false
             }
         ],
         footer: {
@@ -248,7 +260,6 @@ async function getFormData() {
     
     return {
         timestamp: new Date().toISOString(),
-        hwid: hwid,
         discordNick: discordNick || 'Не указан',
         github: github || 'Не указан',
         languages: languages || 'Не указано',
@@ -257,7 +268,8 @@ async function getFormData() {
         call: call || 'Не указано',
         microphone: microphone || 'Не указано',
         power: power ? parseInt(power) : 0,
-        gender: gender || 'Не указано'
+        gender: gender || 'Не указано',
+        hwid: hwid
     };
 }
 
@@ -343,7 +355,6 @@ async function handleSubmit(event) {
         await sendToWebhook(formData);
         
         lastSubmitTime = Date.now();
-        localStorage.setItem('lastSubmitTime', lastSubmitTime.toString());
         
         showMessage('Анкета отправлена');
         resetForm();
