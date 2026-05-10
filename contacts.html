@@ -40,9 +40,8 @@
         </div>
         <div class="contact-item">
           <span class="contact-label">Gmail</span>
-          <span class="contact-value">
-            <button onclick="toggleEmail(this)" style="background: none; border: none; color: #a8b2c1; cursor: pointer; font-size: inherit; font-family: inherit; padding: 0;">Показать</button>
-            <span class="email-hidden" style="display: none; margin-left: 8px;">inceptdevs@gmail.com</span>
+          <span class="contact-value" id="gmail-container">
+            <a href="#" onclick="showEmail(event)" style="color: inherit; text-decoration: none;">Показать</a>
           </span>
         </div>
       </div>
@@ -57,15 +56,10 @@
   </div>
 
   <script>
-    function toggleEmail(btn) {
-      const emailSpan = btn.nextElementSibling;
-      if (emailSpan.style.display === "none") {
-        emailSpan.style.display = "inline";
-        btn.textContent = "Скрыть";
-      } else {
-        emailSpan.style.display = "none";
-        btn.textContent = "Показать";
-      }
+    function showEmail(event) {
+      event.preventDefault();
+      const container = document.getElementById('gmail-container');
+      container.innerHTML = 'inceptdevs@gmail.com';
     }
   </script>
 </body>
