@@ -57,10 +57,11 @@ header {
     opacity: 0.85;
 }
 
-.logo img {
-    height: 32px;
+.logo-icon {
+    height: 1.8rem;
     width: auto;
-    display: block;
+    vertical-align: middle;
+    display: inline-block;
 }
 
 .logo span {
