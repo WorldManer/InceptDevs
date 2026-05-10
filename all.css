@@ -42,7 +42,7 @@ header {
 .logo {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 0;
     font-size: 1.8rem;
     font-weight: 600;
     letter-spacing: -0.5px;
@@ -62,6 +62,7 @@ header {
     width: auto;
     vertical-align: middle;
     display: inline-block;
+    margin-right: 2px;
 }
 
 .logo span {
@@ -138,7 +139,7 @@ h1 {
 .error-code {
     font-size: 6rem;
     font-weight: 600;
-    color: #2b3540;
+    color: #333333;
     letter-spacing: -2px;
     line-height: 1;
     margin-bottom: 8px;
@@ -165,24 +166,25 @@ h1 {
     text-decoration: none;
     text-transform: uppercase;
     letter-spacing: 0.3px;
-    transition: background 0.2s ease;
+    transition: all 0.2s ease;
     cursor: pointer;
     font-family: inherit;
-    border: 1px solid #3a424f;
+    border: 1px solid #444444;
 }
 
 .btn-primary {
-    background: #2b3540;
-    color: #e6ecf3;
+    background: #1a1a1a;
+    color: #e0e0e0;
 }
 
 .btn-primary:hover {
-    background: #354050;
+    background: #2a2a2a;
+    border-color: #666666;
 }
 
 .btn-secondary {
     background: transparent;
-    color: #9aa1af;
+    color: #999999;
 }
 
 .btn-secondary:hover {
