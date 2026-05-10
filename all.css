@@ -9,7 +9,6 @@
 @font-face {
     font-family: 'Builder Sans';
     src: local('Builder Sans');
-    /* Если шрифт не установлен локально, используем запасной */
 }
 
 body {
@@ -41,6 +40,9 @@ header {
 }
 
 .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     font-size: 1.8rem;
     font-weight: 600;
     letter-spacing: -0.5px;
@@ -53,6 +55,12 @@ header {
 
 .logo:hover {
     opacity: 0.85;
+}
+
+.logo img {
+    height: 32px;
+    width: auto;
+    display: block;
 }
 
 .logo span {
@@ -117,6 +125,68 @@ h1 {
     font-size: 1.05rem;
     margin-bottom: 32px;
     max-width: 580px;
+}
+
+/* 404 specific */
+.error-page main {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.error-code {
+    font-size: 6rem;
+    font-weight: 600;
+    color: #2b3540;
+    letter-spacing: -2px;
+    line-height: 1;
+    margin-bottom: 8px;
+}
+
+.error-page .statement {
+    text-align: left;
+    margin-bottom: 48px;
+    max-width: 480px;
+}
+
+.buttons {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 28px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    transition: background 0.2s ease;
+    cursor: pointer;
+    font-family: inherit;
+    border: 1px solid #3a424f;
+}
+
+.btn-primary {
+    background: #2b3540;
+    color: #e6ecf3;
+}
+
+.btn-primary:hover {
+    background: #354050;
+}
+
+.btn-secondary {
+    background: transparent;
+    color: #9aa1af;
+}
+
+.btn-secondary:hover {
+    background: #1a1e26;
+    color: #e6ecf3;
 }
 
 footer {
@@ -438,5 +508,16 @@ button:disabled {
     }
     .info-block:last-child {
         border-bottom: none;
+    }
+    .error-code {
+        font-size: 4rem;
+    }
+    .buttons {
+        flex-direction: column;
+        width: 100%;
+        max-width: 300px;
+    }
+    .btn {
+        text-align: center;
     }
 }
