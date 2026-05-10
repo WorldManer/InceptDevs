@@ -3,200 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>InceptDevs</title>
+  <title>InceptDevs - 404</title>
   <link rel="icon" type="image/png" href="icon.png">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      background: #0b0e14;
-      font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      color: #d4d8dd;
-      line-height: 1.5;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      letter-spacing: -0.01em;
-    }
-
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 28px;
-      width: 100%;
-    }
-
-    header {
-      border-bottom: 1px solid #2b2f38;
-      padding: 24px 0 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-
-    .logo {
-      font-size: 1.8rem;
-      font-weight: 600;
-      letter-spacing: -0.5px;
-      color: #f0f3f8;
-      text-transform: lowercase;
-      text-decoration: none;
-    }
-    .logo span {
-      color: #7c8ba0;
-      font-weight: 450;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 36px;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      color: #9aa1af;
-      font-weight: 480;
-      font-size: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 0.3px;
-      transition: color 0.2s ease;
-      border-bottom: 1px solid transparent;
-    }
-
-    .nav-links a:hover {
-      color: #e6ecf3;
-      border-bottom: 1px solid #5f6b7c;
-    }
-
-    main {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 48px 0 60px;
-      text-align: center;
-    }
-
-    .error-code {
-      font-size: 6rem;
-      font-weight: 600;
-      color: #2b3540;
-      letter-spacing: -2px;
-      line-height: 1;
-      margin-bottom: 8px;
-    }
-
-    h1 {
-      font-size: 2.2rem;
-      font-weight: 550;
-      color: #f2f5f9;
-      letter-spacing: -0.6px;
-      margin-bottom: 20px;
-    }
-
-    .statement {
-      border-left: 2px solid #3a424f;
-      padding-left: 20px;
-      color: #a4afbf;
-      font-size: 1.05rem;
-      margin-bottom: 48px;
-      max-width: 480px;
-      text-align: left;
-    }
-
-    .buttons {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 12px 28px;
-      font-size: 0.95rem;
-      font-weight: 500;
-      text-decoration: none;
-      text-transform: uppercase;
-      letter-spacing: 0.3px;
-      transition: background 0.2s ease;
-      cursor: pointer;
-      font-family: inherit;
-      border: 1px solid #3a424f;
-    }
-
-    .btn-primary {
-      background: #2b3540;
-      color: #e6ecf3;
-    }
-
-    .btn-primary:hover {
-      background: #354050;
-    }
-
-    .btn-secondary {
-      background: transparent;
-      color: #9aa1af;
-    }
-
-    .btn-secondary:hover {
-      background: #1a1e26;
-      color: #e6ecf3;
-    }
-
-    footer {
-      border-top: 1px solid #262b33;
-      padding: 24px 0;
-      font-size: 0.8rem;
-      color: #6a717f;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 16px;
-    }
-
-    .footer-note {
-      color: #5c6573;
-    }
-
-    @media (max-width: 600px) {
-      .container {
-        padding: 0 20px;
-      }
-      .nav-links {
-        gap: 20px;
-      }
-      .error-code {
-        font-size: 4rem;
-      }
-      h1 {
-        font-size: 1.8rem;
-      }
-      .buttons {
-        flex-direction: column;
-        width: 100%;
-        max-width: 300px;
-      }
-      .btn {
-        text-align: center;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="all.css">
 </head>
-<body>
+<body class="error-page">
   <div class="container">
     <header>
-      <a href="main-page" class="logo">incept<span>devs</span></a>
+      <a href="/" class="logo">
+        <img src="icon.png" alt="InceptDevs logo">
+        incept<span>devs</span>
+      </a>
       <nav class="nav-links">
-        <a href="main-page">Главная</a>
+        <a href="/">Главная</a>
         <a href="contacts">Контакты</a>
       </nav>
     </header>
@@ -208,7 +27,7 @@
         Такой страницы не существует. Возможно, она была перемещена или вы указали неверный адрес.
       </div>
       <div class="buttons">
-        <a href="main-page" class="btn btn-primary">На главную</a>
+        <a href="/" class="btn btn-primary">На главную</a>
         <a href="javascript:history.back()" class="btn btn-secondary">Назад</a>
       </div>
     </main>
