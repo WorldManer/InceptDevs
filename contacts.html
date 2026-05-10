@@ -22,7 +22,7 @@
       <div class="section-label">Связь</div>
       <h1>Контакты</h1>
       <div class="statement">
-        Прямые ссылки для связи с командой и подачи заявки.
+        Прямые ссылки для связи с нами.
       </div>
 
       <div class="contact-list">
@@ -39,15 +39,15 @@
           <span class="contact-value"><a href="applications">Нажмите сюда</a></span>
         </div>
         <div class="contact-item">
-          <span class="contact-label">YouTube канал</span>
-          <span class="contact-value"><a href="https://youtube.com/@inceptdevs?si=jp3OFZO-B2-8zuUK" target="_blank" rel="noopener noreferrer">Нажмите сюда</a></span>
+          <span class="contact-label">Gmail</span>
+          <span class="contact-value">
+            <button onclick="toggleEmail(this)" style="background: none; border: none; color: #a8b2c1; cursor: pointer; font-size: inherit; font-family: inherit; padding: 0;">Показать</button>
+            <span class="email-hidden" style="display: none; margin-left: 8px;">inceptdevs@gmail.com</span>
+          </span>
         </div>
       </div>
 
       <hr>
-      <div style="color: #6a717f; font-size: 0.9rem;">
-        Актуальные контакты. Присоединяйтесь, если разделяете подход Just Developers.
-      </div>
     </main>
 
     <footer>
@@ -55,5 +55,18 @@
       <div class="footer-note">Just Developers</div>
     </footer>
   </div>
+
+  <script>
+    function toggleEmail(btn) {
+      const emailSpan = btn.nextElementSibling;
+      if (emailSpan.style.display === "none") {
+        emailSpan.style.display = "inline";
+        btn.textContent = "Скрыть";
+      } else {
+        emailSpan.style.display = "none";
+        btn.textContent = "Показать";
+      }
+    }
+  </script>
 </body>
 </html>
